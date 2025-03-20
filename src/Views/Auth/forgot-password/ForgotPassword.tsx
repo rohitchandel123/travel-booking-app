@@ -12,7 +12,6 @@ function ForgotPassword() {
   async function handleResetPassword(values: emailValue) {
     try {
       await sendPasswordResetEmail(auth, values.email).then(() => {
-        // toast.success('password reset link has been sent, please check your mail box');
         console.log('email sent');
       });
     } catch (err) {
@@ -23,7 +22,8 @@ function ForgotPassword() {
   }
 
   return (
-    <div className="reset-password-container">
+    <div className = "forgot-password-div">
+        <div className="forgot-password-container">
       <h3>Reset Your Password</h3>
 
       <Formik
@@ -36,16 +36,19 @@ function ForgotPassword() {
         onSubmit={handleResetPassword}
       >
         <Form>
+        <div>
           <Field
             type="email"
             name="email"
             placeholder="Enter Your Email"
           ></Field>
           <ErrorMessage name="email" />
+          </div>
 
-          <button type="submit">Send email</button>
+         <div> <button type="submit">Send email</button> </div>
         </Form>
       </Formik>
+    </div>
     </div>
   );
 }

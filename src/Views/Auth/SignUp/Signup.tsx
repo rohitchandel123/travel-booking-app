@@ -1,8 +1,12 @@
 import './Signup.css';
+import { useNavigate } from 'react-router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ToggleBtn from '../buttons/ToggleBtn/ToggleBtn';
 import SocialBtn from '../buttons/SocialButtons/SocialBtn';
+
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
+
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, db, googleProvider } from '../../../firebaseConfig';
@@ -15,7 +19,9 @@ interface SignUpFormValues {
 }
 
 function Signup() {
+  const navigate = useNavigate();
   const handleSignup = async (values: SignUpFormValues) => {
+    console.log('working');
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -71,11 +77,11 @@ function Signup() {
           <div className="auth-buttons">
             <ToggleBtn
               name="Sign Up"
-              handleClick={() => console.log('Sign Up button')}
+              handleClick={() => navigate(`${ROUTES_CONFIG.REGISTER.path}`)}
             />
             <ToggleBtn
               name="Sign In"
-              handleClick={() => console.log('Sign In button')}
+              handleClick={() => navigate(`${ROUTES_CONFIG.LOGIN.path}`)} //will use here the navigate to login
             />
           </div>
 
@@ -115,7 +121,8 @@ function Signup() {
                   .required('Required')
                   .oneOf([Yup.ref('password')], 'Password must match'),
               })}
-              onSubmit={handleSignup}
+              
+              onSubmit= {handleSignup}//{handleSignup}
             >
               <Form className="form-values">
                 <div className="input-group">

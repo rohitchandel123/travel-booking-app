@@ -1,4 +1,5 @@
 import './footer.css';
+import { ProjectImages } from '../../assets/ProjectImages';
 
 import Button from '../Buttons/Button';
 function Footer() {
@@ -6,6 +7,7 @@ function Footer() {
     <div className="footer-container">
     <div className="footer-section">
       <div className="left-footer">
+        <img src = {ProjectImages.TRISOG_LOGO} />
         <li className="footer-cursive">Need any help?</li>
         <h6>Call Us: (888)12345678</h6>
         <p>

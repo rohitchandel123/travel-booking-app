@@ -19,7 +19,7 @@ import Footer from './Components/Footer/Footer.tsx'
 
 //  import Signup from './Views/Auth/SignUp/Signup.tsx';
 //  import SignIn from './Views/Auth/SignIn/SignIn';
-import ForgotPassword from './Views/Auth/forgot-password/index.tsx';
+// import ForgotPassword from './Views/Auth/forgot-password/index.tsx';
 
 const baseName = import.meta.env.VITE_BASE_NAME;
 
@@ -41,7 +41,7 @@ function App() {
 
       {/* <SignIn /> */}
       {/* <Signup /> */}
-      <ForgotPassword/>
+      {/* <ForgotPassword/> */}
       
 
       <Footer />

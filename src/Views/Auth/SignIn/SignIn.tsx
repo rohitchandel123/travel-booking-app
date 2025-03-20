@@ -1,4 +1,6 @@
 import './SignIn.css';
+import {useNavigate} from 'react-router';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ToggleBtn from '../buttons/ToggleBtn/ToggleBtn';
@@ -7,12 +9,18 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../../../firebaseConfig';
 
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
+import {Link} from 'react-router-dom';
+
 interface SignInFormValues {
   email: string;
   password: string;
 }
 
 function SignIn() {
+
+  const navigate = useNavigate();
+
   const handleSignIn = async (values: SignInFormValues) => {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
@@ -36,11 +44,11 @@ function SignIn() {
       <div className="auth-buttons">
         <ToggleBtn
           name="Sign Up"
-          handleClick={() => console.log('Sign Up button')}
+          handleClick={() => navigate(`${ROUTES_CONFIG.REGISTER.path}`) }
         />
         <ToggleBtn
           name="Sign In"
-          handleClick={() => console.log('Sign In button')}
+          handleClick={() => navigate(`${ROUTES_CONFIG.LOGIN.path}`) }
         />
       </div>
 
@@ -71,10 +79,12 @@ function SignIn() {
             </button>
           </Form>
         </Formik>
-      </div>
-
+      </div>  
+        
+        <Link to='/reset-password'>Forgot Your Password ? </Link>
+      
       <div className="social-auth">
-        <SocialBtn name="Google" handleClick={handleGoogleLogin} />
+        <SocialBtn name="Google" handleClick = {handleGoogleLogin} />
         <SocialBtn
           name="Facebook"
           handleClick={() => console.log('Facebook')}
