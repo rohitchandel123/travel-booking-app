@@ -5,6 +5,7 @@ import { CustomRouter } from './RootRoutes';
 import { default as Login } from '../Views/Auth/SignIn/SignIn';
 import { default as Register } from '../Views/Auth/SignUp/index'
 import ForgotPassword from '../Views/Auth/forgot-password';
+
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
   {

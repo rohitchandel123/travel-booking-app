@@ -1,14 +1,23 @@
 import './Dashboard.css';
 import Prompt from '../../Components/Atom/Blocker';
-import { useDemoApiQuery } from '../../Services/Api/module/demoApi';
+import { useGetAttractionQuery } from '../../Services/Api/module/demoApi';
+
 import { ProjectImages } from '../../assets/ProjectImages';
 import TourCard from '../TourCard/TourCard';
 import HomepageDestination from '../HomepageDestination/HomepageDestination';
 import WhyUsComponent from '../WhyUsComponent/index';
 
 export default function Dashboard() {
-  const { data, error } = useDemoApiQuery('');
+  //manages the id of the cities as per your requirements
+  const { data, error } = useGetAttractionQuery(
+    'eyJwaW5uZWRQcm9kdWN0IjoiUFJpSEhIVjB1TGJPIiwidWZpIjoyMDA4ODMyNX0='
+  );
+
+  const attractions = data?.data?.products?.slice(10, 14) || []; //?.primaryPhoto?.small;
+
+  console.log('working......', attractions);
   console.log(data, error);
+
   return (
     <div>
       <Prompt when message="Are you sure you want to leave?" />
@@ -36,10 +45,31 @@ export default function Dashboard() {
         </div>
         <div className="tour-content-container">
           <div className="tour-content">
-            <TourCard />
-            <TourCard />
-            <TourCard />
-            <TourCard />
+            {/* country name, city name, tour name, ratings, reviews, price , duration  */}
+
+            {attractions.map((item) => {
+              const countryName = item?.ufiDetails?.url?.country;
+              const cityName = item?.ufiDetails?.bCityName;
+              const tourName = item?.name;
+              const tourImage = item?.primaryPhoto?.small;
+              const tourRating =
+                item?.reviewsStats?.combinedNumericStats?.average; //issue
+              const tourReview = item?.reviewsStats?.allReviewsCount; //issue
+              const tourPrice = Math.floor(item?.representativePrice?.chargeAmount);
+
+              return (
+                <TourCard
+                  cityName={cityName}
+                  countryName={countryName}
+                  tourName={tourName}
+                  tourImage={tourImage}
+                  tourRating={tourRating}
+                  tourReview={tourReview}
+                  tourPrice={tourPrice}
+                  tourDuration="7 days"
+                />
+              );
+            })}
           </div>
         </div>
       </div>

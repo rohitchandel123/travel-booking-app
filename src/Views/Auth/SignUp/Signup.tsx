@@ -122,7 +122,7 @@ function Signup() {
                   .oneOf([Yup.ref('password')], 'Password must match'),
               })}
               
-              onSubmit= {handleSignup}//{handleSignup}
+              onSubmit= {handleSignup}
             >
               <Form className="form-values">
                 <div className="input-group">

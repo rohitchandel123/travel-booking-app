@@ -13,9 +13,17 @@ const baseQuery: BaseQueryFn = fetchBaseQuery({
   baseUrl: API_BASE_URL,
   prepareHeaders: async (headers: Headers, { getState }) => {
     const { token } = (getState() as RootState).common;
+
+    headers.set('x-rapidapi-key', import.meta.env.VITE_RAPIDAPI_KEY);
+    headers.set('x-rapidapi-host', import.meta.env.VITE_BASE_URL);
+
+    //   if (token) {
+    //   headers.append('authorization', `${token}`);
+    // }
     if (token) {
-      headers.append('authorization', `${token}`);
+      headers.set('authorization', `${token}`);
     }
+    
     return headers;
   },
 });
