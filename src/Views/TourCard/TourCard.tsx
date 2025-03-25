@@ -1,14 +1,17 @@
 import './TourCard.css';
+import { Link } from 'react-router-dom';
+import { ROUTES_CONFIG } from '../../Shared/Constants';
 
 interface tourCardProps {
   cityName: string;
   countryName: string;
   tourName: string;
   tourImage: string;
-  tourRating: string; //Number;
-  tourReview: string; //Number;
-  tourPrice: string; //Number;
-  tourDuration: string; //Number;
+  tourRating: string;
+  tourReview: string;
+  tourPrice: number;
+  tourDuration: string;
+  slugValue: string;
 }
 
 function TourCard({
@@ -20,6 +23,7 @@ function TourCard({
   tourReview,
   tourPrice,
   tourDuration,
+  slugValue,
 }: tourCardProps) {
   return (
     <div className="tour-card-container">
@@ -30,12 +34,14 @@ function TourCard({
         <p>
           {cityName}, {countryName}
         </p>
-        <h4>{tourName}</h4>
+        <Link to={ROUTES_CONFIG.TOURS.path} state={{ slugValue: slugValue }}>
+          <h4>{tourName}</h4>
+        </Link>
 
         <div className="tour-additional-info">
           <div className="rating-reviews">
             <span className="rating-star-class">
-              <i className="fa fa-star" /> {tourRating} <br />{' '}
+              <i className="fa fa-star" /> {tourRating} <br />
             </span>
             <span className="tour-additional-info-text">
               {tourReview} reviews <br />
@@ -43,7 +49,7 @@ function TourCard({
           </div>
           <span className="tour-additional-info-text">
             {tourDuration}
-            <br />{' '}
+            <br />
           </span>
         </div>
 

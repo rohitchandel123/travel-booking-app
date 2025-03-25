@@ -5,6 +5,7 @@ import { CustomRouter } from './RootRoutes';
 import { default as Login } from '../Views/Auth/SignIn/SignIn';
 import { default as Register } from '../Views/Auth/SignUp/index'
 import ForgotPassword from '../Views/Auth/forgot-password';
+import TourDetail from '../Views/TourDetail';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
@@ -29,6 +30,12 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
     path:ROUTES_CONFIG.RESET_PASSWORD.path,
     title: ROUTES_CONFIG.RESET_PASSWORD.title,
     element: <ForgotPassword />
+  },
+
+  {
+    path:ROUTES_CONFIG.TOURS.path,
+    title:ROUTES_CONFIG.TOURS.title,
+    element: <TourDetail /> //tour detail page
   },
 
   {

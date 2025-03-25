@@ -6,7 +6,8 @@ const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   ABOUT: '/about-us',
-  RESET_PASSWORD: '/reset-password'
+  RESET_PASSWORD: '/reset-password',
+  TOURS: '/tours'
 };
 
 const WILDCARD_ROUTES = {
@@ -34,7 +35,12 @@ const ROUTES_CONFIG = {
   RESET_PASSWORD:{
     path: ROUTES.RESET_PASSWORD,
     title:'Reset Password',
+  },
+  TOURS:{
+    path:ROUTES.TOURS,
+    title:'Tours',
   }
+
 };
 
 export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };

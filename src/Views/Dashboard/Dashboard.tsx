@@ -1,7 +1,6 @@
 import './Dashboard.css';
 import Prompt from '../../Components/Atom/Blocker';
 import { useGetAttractionQuery } from '../../Services/Api/module/demoApi';
-
 import { ProjectImages } from '../../assets/ProjectImages';
 import TourCard from '../TourCard/TourCard';
 import HomepageDestination from '../HomepageDestination/HomepageDestination';
@@ -9,19 +8,15 @@ import WhyUsComponent from '../WhyUsComponent/index';
 
 export default function Dashboard() {
   //manages the id of the cities as per your requirements
-  const { data, error } = useGetAttractionQuery(
-    'eyJwaW5uZWRQcm9kdWN0IjoiUFJpSEhIVjB1TGJPIiwidWZpIjoyMDA4ODMyNX0='
+  const { data } = useGetAttractionQuery(
+    'eyJwaW5uZWRQcm9kdWN0IjoiUFJpSEhIVjB1TGJPIiwidWZpIjoyMDA4ODMyNX0=' // use variables here
   );
 
-  const attractions = data?.data?.products?.slice(10, 14) || []; //?.primaryPhoto?.small;
-
-  console.log('working......', attractions);
-  console.log(data, error);
+  const attractions = data?.data?.products?.slice(10, 14) || [];
 
   return (
     <div>
       <Prompt when message="Are you sure you want to leave?" />
-      <h2>working homepage</h2>
 
       <div className="homepage-banner">
         <img src={ProjectImages.HomePageBanner} />
@@ -47,15 +42,19 @@ export default function Dashboard() {
           <div className="tour-content">
             {/* country name, city name, tour name, ratings, reviews, price , duration  */}
 
-            {attractions.map((item) => {
-              const countryName = item?.ufiDetails?.url?.country;
+            {attractions.map((item: any) => {
+              const countryName =
+                (item?.ufiDetails?.url?.country).toUpperCase();
               const cityName = item?.ufiDetails?.bCityName;
               const tourName = item?.name;
               const tourImage = item?.primaryPhoto?.small;
               const tourRating =
-                item?.reviewsStats?.combinedNumericStats?.average; //issue
-              const tourReview = item?.reviewsStats?.allReviewsCount; //issue
-              const tourPrice = Math.floor(item?.representativePrice?.chargeAmount);
+                item?.reviewsStats?.combinedNumericStats?.average;
+              const tourReview = item?.reviewsStats?.allReviewsCount;
+              const tourPrice = Math.floor(
+                item?.representativePrice?.chargeAmount
+              );
+              const slugValue = item?.slug;
 
               return (
                 <TourCard
@@ -66,7 +65,8 @@ export default function Dashboard() {
                   tourRating={tourRating}
                   tourReview={tourReview}
                   tourPrice={tourPrice}
-                  tourDuration="7 days"
+                  tourDuration="2 days"
+                  slugValue={slugValue}
                 />
               );
             })}
