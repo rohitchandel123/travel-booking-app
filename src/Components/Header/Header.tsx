@@ -1,14 +1,19 @@
+import { Link } from 'react-router-dom';
 import './header.css';
+import { ProjectImages } from '../../assets/ProjectImages';
+import { ROUTES_CONFIG } from '../../Shared/Constants';
 
 function Header() {
   return (
     <div className="header-section">
       <div className="left-header">
         <div className="header-logo">
-          <span>an image</span>
+          <img src={ProjectImages.TRISOG_HEADER_LOGO} />
         </div>
         <div className="header-items">
-          <li>Home</li>
+          <Link to={ROUTES_CONFIG.HOMEPAGE.path} className="link-class">
+            <li>{ROUTES_CONFIG.HOMEPAGE.title}</li>
+          </Link>
           <li>About</li>
           <li>Tours</li>
           <li>Destination</li>
@@ -18,9 +23,18 @@ function Header() {
         </div>
       </div>
       <div className="right-header">
-        <i className='fa-solid fa-magnifying-glass'></i>
-        <i className='fa-regular fa-user'></i>
-        <p>Login / Signup</p>
+        <i className="fa-solid fa-magnifying-glass"></i>
+        <p>
+          <Link to={ROUTES_CONFIG.LOGIN.path} className="link-class">
+            {' '}
+            <i className="fa-regular fa-user"></i>{" "}
+            {ROUTES_CONFIG.LOGIN.title}
+          </Link>{' '}
+          /{' '}
+          <Link to={ROUTES_CONFIG.REGISTER.path} className="link-class">
+            {ROUTES_CONFIG.REGISTER.title}
+          </Link>
+        </p>
       </div>
     </div>
   );

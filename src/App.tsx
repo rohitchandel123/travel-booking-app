@@ -12,8 +12,6 @@ import RootRouter from './Routes/RootRouter';
 
 import './App.css';
 
-import Footer from './Components/Footer/Footer.tsx'
-// import Header from './Components/Header/Header.tsx'
 
 // import Button from './Components/Buttons/Button'
 
@@ -32,19 +30,12 @@ function App() {
   // const [count, setCount] = useState<number>(0);
   return (
     <Provider store={store}>
-        {/* <Header /> */}
       <PersistGate persistor={persistor}>
         <HelmetProvider>
           <RouterProvider router={router} />
         </HelmetProvider>
       </PersistGate>
 
-      {/* <SignIn /> */}
-      {/* <Signup /> */}
-      {/* <ForgotPassword/> */}
-      
-
-      <Footer />
     </Provider>
   );
 }
