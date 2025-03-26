@@ -7,7 +7,8 @@ const ROUTES = {
   REGISTER: '/register',
   ABOUT: '/about-us',
   RESET_PASSWORD: '/reset-password',
-  TOURS: '/tours'
+  TOURS: '/tours',
+  CONTACT:  '/contact'
 };
 
 const WILDCARD_ROUTES = {
@@ -39,6 +40,10 @@ const ROUTES_CONFIG = {
   TOURS:{
     path:ROUTES.TOURS,
     title:'Tours',
+  },
+  CONTACT:{
+    path: ROUTES.CONTACT,
+    title:'Contact'
   }
 
 };

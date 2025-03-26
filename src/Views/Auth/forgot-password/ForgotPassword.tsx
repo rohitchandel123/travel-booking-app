@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import './forgotPassword.css';
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -12,13 +13,11 @@ function ForgotPassword() {
   async function handleResetPassword(values: emailValue) {
     try {
       await sendPasswordResetEmail(auth, values.email).then(() => {
-        console.log('email sent');
+        toast.success('email sent');
       });
     } catch (err) {
-      console.log('An error occured while sending the email');
+      toast.error('An error occured while sending the email');
     }
-
-    console.log('this will perform the reset password function', values);
   }
 
   return (

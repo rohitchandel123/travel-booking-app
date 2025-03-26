@@ -19,7 +19,10 @@ function Header() {
           <li>Destination</li>
           <li>Blog</li>
           <li>Pages</li>
-          <li>Contact</li>
+          <Link to ={ROUTES_CONFIG.CONTACT.path} className='link-class'>
+          <li>{ROUTES_CONFIG.CONTACT.title}</li>
+          </Link>
+          
         </div>
       </div>
       <div className="right-header">

@@ -1,4 +1,6 @@
 import './Signup.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -21,7 +23,6 @@ interface SignUpFormValues {
 function Signup() {
   const navigate = useNavigate();
   const handleSignup = async (values: SignUpFormValues) => {
-    console.log('working');
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -37,10 +38,9 @@ function Signup() {
       });
 
       console.log('User registered:', user);
-      alert('Signup Successful!');
+      toast.success('Signup Successful!');
     } catch (error) {
-      console.error('Error registering user:', (error as Error).message);
-      alert((error as Error).message);
+      toast.error((error as Error).message);
     }
   };
 
@@ -64,10 +64,10 @@ function Signup() {
       }
 
       console.log('Google User Signed Up:', user);
-      alert('Google Signup Successful!');
+      toast.success('Google Signup Successful!');
     } catch (error: any) {
       console.error('Google Signup Failed:', error.message);
-      alert(error.message);
+      toast.error('Signup Failed',error.message);
     }
   };
   return (
@@ -180,11 +180,11 @@ function Signup() {
             <SocialBtn name="Google" handleClick={handleGoogleSignUp} />
             <SocialBtn
               name="Facebook"
-              handleClick={() => console.log('Facebook')}
+              handleClick={() => console.log('Facebook')}   // add functionalities if required
             />
             <SocialBtn
               name="Twitter"
-              handleClick={() => console.log('Twitter')}
+              handleClick={() => console.log('Twitter')}    //add functionalities if required
             />
           </div>
         </div>

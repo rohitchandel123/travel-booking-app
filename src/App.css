@@ -47,6 +47,10 @@
   font-weight:400;
 }
 
+.project-theme-color{
+  color: #fc5056;
+}
+
 p{
   display:block;
 }

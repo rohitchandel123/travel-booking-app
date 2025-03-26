@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -28,11 +29,13 @@ const router = createBrowserRouter(
 
 function App() {
   // const [count, setCount] = useState<number>(0);
+
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <HelmetProvider>
           <RouterProvider router={router} />
+          <ToastContainer position="top-right" autoClose={3000} />;
         </HelmetProvider>
       </PersistGate>
 

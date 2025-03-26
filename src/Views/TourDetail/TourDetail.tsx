@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom';
 import './TourDetail.css';
 import { useLocation } from 'react-router-dom';
 import { useGetTourDetailQuery } from '../../Services/Api/module/demoApi';
-import FeaturedTours from '../FeaturedTours/FeaturedTours';
+import MapComponent from '../Shared/MapComponent';
+import { ROUTES_CONFIG } from '../../Shared/Constants';
+
+//import FeaturedTours from '../FeaturedTours/FeaturedTours';
 
 function TourDetail() {
   const location = useLocation();
@@ -11,7 +15,7 @@ function TourDetail() {
   const tourData = data?.data;
 
   const tourName = tourData?.name;
-  const tourCity = tourData?.ufiDetails?.bCityName;
+  const tourCity: string = tourData?.ufiDetails?.bCityName;
   const tourCountry = tourData?.ufiDetails?.url?.country;
   const tourRating = tourData?.reviewsStats?.combinedNumericStats?.average;
   const tourReviewCount = tourData?.reviewsStats?.combinedNumericStats?.total;
@@ -40,19 +44,34 @@ function TourDetail() {
             </button>
           </div>
 
-          <div className="tour-detail-content">
-            <p>
-              {' '}
-              <i className="fa-solid fa-location-dot"></i> {tourCity},{' '}
-              {tourCountry}
-            </p>
-            <h3>{tourName}</h3>
+          <div className="tour-detail-location-share">
+            <div className="tour-detail-location">
+              <p>
+                {' '}
+                <i className="fa-solid fa-location-dot"></i> {tourCity},{' '}
+                {tourCountry} {'  '}
+                <Link
+                  to={ROUTES_CONFIG.LOGIN.path}                   // {/* -----------put google map link here -----------------  */}
+                  className="link-class project-theme-color"
+                >
+                  view on map
+                </Link>{' '}
+               
+              </p>
+            </div>
+            <div className="tour-detail-share">
+              <i className="fa-solid fa-share-nodes"></i>
+              <i className="fa-regular fa-heart"></i>
+            </div>
           </div>
+          <h3>{tourName}</h3>
 
           <div className="tour-features-container">
             <div className="tour-feature">
               <span className="tour-feature-heading">From</span>
-              <span className="tour-feature-value">${tourPrice}</span>
+              <span className="tour-feature-value project-theme-color">
+                ${tourPrice}
+              </span>
             </div>
 
             <div className="tour-feature">
@@ -78,24 +97,29 @@ function TourDetail() {
             <div className="tour-feature">
               <span className="tour-feature-heading">Reviews</span>
               <span className="tour-feature-value">
+                <i className="fa-solid fa-star project-theme-color" />{' '}
                 {tourRating} ({tourReviewCount} reviews)
               </span>
             </div>
           </div>
 
           <div className="tour-detail-overview">
-            <h5>Overview</h5>
+            <h5 className="detail-page-minor-title">Overview</h5>
             <p> {tourDescription} </p>
+          </div>
+
+          <div className="tour-location-map">
+            <MapComponent cityName={tourCity} />
           </div>
         </div>
 
         <div className="tour-booking-detail"></div>
       </section>
 
-      <div className="tour-detail-featured-tours">
-        {/* some tours will be featured here*/}
+      {/* <div className="tour-detail-featured-tours">
+         some tours will be featured here
         <FeaturedTours />
-      </div>
+      </div> */}
     </>
   );
 }

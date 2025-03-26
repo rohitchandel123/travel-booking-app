@@ -20,6 +20,7 @@ const baseQuery: BaseQueryFn = fetchBaseQuery({
     //   if (token) {
     //   headers.append('authorization', `${token}`);
     // }
+    
     if (token) {
       headers.set('authorization', `${token}`);
     }

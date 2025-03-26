@@ -1,10 +1,9 @@
-import './Dashboard.css';
-import Prompt from '../../Components/Atom/Blocker';
 import { useGetAttractionQuery } from '../../Services/Api/module/demoApi';
 import { ProjectImages } from '../../assets/ProjectImages';
-import TourCard from '../TourCard/TourCard';
 import HomepageDestination from '../HomepageDestination/HomepageDestination';
+import TourCard from '../TourCard/TourCard';
 import WhyUsComponent from '../WhyUsComponent/index';
+import './Dashboard.css';
 
 export default function Dashboard() {
   //manages the id of the cities as per your requirements
@@ -16,7 +15,6 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Prompt when message="Are you sure you want to leave?" />
 
       <div className="homepage-banner">
         <img src={ProjectImages.HomePageBanner} />
@@ -40,8 +38,6 @@ export default function Dashboard() {
         </div>
         <div className="tour-content-container">
           <div className="tour-content">
-            {/* country name, city name, tour name, ratings, reviews, price , duration  */}
-
             {attractions.map((item: any) => {
               const countryName =
                 (item?.ufiDetails?.url?.country).toUpperCase();

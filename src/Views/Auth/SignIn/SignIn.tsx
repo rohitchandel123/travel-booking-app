@@ -1,6 +1,5 @@
 import './SignIn.css';
 import {useNavigate} from 'react-router';
-
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ToggleBtn from '../buttons/ToggleBtn/ToggleBtn';
@@ -8,9 +7,10 @@ import SocialBtn from '../buttons/SocialButtons/SocialBtn';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../../../firebaseConfig';
-
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import {Link} from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface SignInFormValues {
   email: string;
@@ -18,24 +18,23 @@ interface SignInFormValues {
 }
 
 function SignIn() {
-
   const navigate = useNavigate();
-
   const handleSignIn = async (values: SignInFormValues) => {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      alert('Login Successfull');
-    } catch (error) {
-      console.log('login error', error);
+      toast.success("Login Successful");
+
+    } catch {
+      toast.error("Error Try again");
     }
   };
 
   async function handleGoogleLogin() {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      console.log('User Info:', result.user); // Logged-in user info
+      console.log('User Info:', result.user);                                   // Logged-in user info
     } catch (error) {
-      console.error('Google login failed:', error);
+      toast.error((error as Error).message || 'Something went wrong');
     }
   }
 
