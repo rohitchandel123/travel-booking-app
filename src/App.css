@@ -50,3 +50,7 @@
 p{
   display:block;
 }
+
+.link-class{
+  text-decoration: none;
+}
