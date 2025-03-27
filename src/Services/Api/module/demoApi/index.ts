@@ -7,6 +7,10 @@ export const userApi = api.injectEndpoints({
     }),
     getTourDetail: build.query({
       query:(slugValue)=>`attraction/getAttractionDetails?slug=${slugValue}&currency_code=USD`
+    }),
+
+    getDateAndTime: build.query({
+      query:(slugValue,date)=>`attraction/getAvailability?slug=${slugValue}&date=${date}&currency_code=USD&languagecode=en-us`
     })
   }),
   overrideExisting: false,
@@ -14,4 +18,4 @@ export const userApi = api.injectEndpoints({
 
 // We can use the Lazy Query as well for GET requests depends on our Requirements.
 // For POST request we will use mutations.
-export const { useGetAttractionQuery, useGetTourDetailQuery } = userApi;
+export const { useGetAttractionQuery, useGetTourDetailQuery, useGetDateAndTimeQuery } = userApi;

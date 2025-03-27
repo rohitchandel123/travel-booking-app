@@ -1,15 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './TourDetail.css';
-import { useLocation } from 'react-router-dom';
 import { useGetTourDetailQuery } from '../../Services/Api/module/demoApi';
 import MapComponent from '../Shared/MapComponent';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
+import TourBookingDetail from './TourBookingDetail';
 
 //import FeaturedTours from '../FeaturedTours/FeaturedTours';
 
 function TourDetail() {
-  const location = useLocation();
-  const { slugValue } = location.state;
+  //  const location = useLocation();
+  //  const { slugValue } = location.state;
+
+  const {slugId} = useParams();
+  const slugValue = slugId;
+ 
 
   const { data } = useGetTourDetailQuery(slugValue);
   const tourData = data?.data;
@@ -51,7 +55,7 @@ function TourDetail() {
                 <i className="fa-solid fa-location-dot"></i> {tourCity},{' '}
                 {tourCountry} {'  '}
                 <Link
-                  to={ROUTES_CONFIG.LOGIN.path}                   // {/* -----------put google map link here -----------------  */}
+                  to={ROUTES_CONFIG.LOGIN.path}         // {/* -----------put google map link here -----------------  */}
                   className="link-class project-theme-color"
                 >
                   view on map
@@ -113,7 +117,10 @@ function TourDetail() {
           </div>
         </div>
 
-        <div className="tour-booking-detail"></div>
+        <div className="tour-booking-detail">
+            <TourBookingDetail tourPrice = {tourPrice}/>
+        </div>
+
       </section>
 
       {/* <div className="tour-detail-featured-tours">

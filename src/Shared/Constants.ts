@@ -8,7 +8,8 @@ const ROUTES = {
   ABOUT: '/about-us',
   RESET_PASSWORD: '/reset-password',
   TOURS: '/tours',
-  CONTACT:  '/contact'
+  CONTACT:  '/contact',
+  TOURS_DETAIL: '/tours-detail/:slugId'
 };
 
 const WILDCARD_ROUTES = {
@@ -40,6 +41,10 @@ const ROUTES_CONFIG = {
   TOURS:{
     path:ROUTES.TOURS,
     title:'Tours',
+  },  
+  TOURS_DETAIL:{
+    path: ROUTES.TOURS_DETAIL,
+    title:'Tours Detail',
   },
   CONTACT:{
     path: ROUTES.CONTACT,

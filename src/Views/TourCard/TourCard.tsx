@@ -34,7 +34,8 @@ function TourCard({
         <p>
           {cityName}, {countryName}
         </p>
-        <Link to={ROUTES_CONFIG.TOURS.path} state={{ slugValue: slugValue }}>
+        <Link to={ROUTES_CONFIG.TOURS_DETAIL.path.replace(':slugId', slugValue)} >
+          {' '}
           <h4>{tourName}</h4>
         </Link>
 

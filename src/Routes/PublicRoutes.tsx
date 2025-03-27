@@ -34,9 +34,9 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
   },
 
   {
-    path:ROUTES_CONFIG.TOURS.path,
-    title:ROUTES_CONFIG.TOURS.title,
-    element: <TourDetail /> //tour detail page
+    path:ROUTES_CONFIG.TOURS_DETAIL.path,
+    title:ROUTES_CONFIG.TOURS_DETAIL.title,
+    element: <TourDetail />                       
   },
 
   {
